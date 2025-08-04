@@ -1,14 +1,21 @@
 import React from "react";
-import SkinstricLogo from "../assete/Skinstric.svg";
+import { useNavigate } from "react-router-dom";
 import Rectangle2710 from "../assete/Rectangle 2710.svg";
 import Rectangle2711 from "../assete/Rectangle 2711.svg";
 
 const Nav = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
   return (
     <nav>
       <div className="nav__container">
         <div className="nav__row">
-          <img className="logo" src={SkinstricLogo} alt="Skinstric Logo" />
+          <button className="skin_btn" onClick={handleLogoClick}>skinstric
+          </button>
           <div className="intro">
             <img src={Rectangle2710} alt="Rectangle 2710" />
             <h1 className="intro_txt">INTRO</h1>
