@@ -17,9 +17,9 @@ const Nav = () => {
           <button className="skin_btn" onClick={handleLogoClick}>skinstric
           </button>
           <div className="intro">
-            <img src={Rectangle2710} alt="Rectangle 2710" />
+            <img className="l-rec" src={Rectangle2710} alt="Rectangle 2710" />
             <h1 className="intro_txt">INTRO</h1>
-            <img src={Rectangle2711} alt="Rectangle 2711" />
+            <img className="r-rec" src={Rectangle2711} alt="Rectangle 2711" />
           </div>
         </div>
           <button className="code_btn">ENTER CODE</button>

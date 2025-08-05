@@ -57,38 +57,47 @@ nav {
   justify-content: center;
   align-items: center;
   width: 120px;
-  height: 40px;
+  height: 8px;
   font-weight: 600;
   background-color: #FFFFFF;
-  /* padding: 2px; */
   cursor: pointer;
-  font-size: 14px;
+  font-size: 10px;
   text-transform: uppercase;
   border: none;
+  transform: translate(-20px, 2px);
 }
 
 .intro {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
-  position: relative;
-  left: -20px;
+  left: -55px;
+  top: 2px;
+  /* transform: translateY(2px); */
 }
 
 .intro_txt {
   margin: 0 -6px;
-  font-size: 14px;
+  font-size: 10px;
   white-space: nowrap;
   color: #1a1b1c82;
+}
+
+.l-rec,
+.r-rec {
+  height: 10px;
+  transform: translateY(-1px);
 }
 
 .code_btn {
   color: #FFFFFF;
   background-color: #1A1B1C;
-  font-size: 10px;
-  padding: 12px 16px;
+  font-size: 8px;
+  padding: 10px 12px;
   cursor: pointer;
   border: none;
+  transform: translate(-4px, -2px);
 }
 
 /*-----------------------------------------*/
@@ -97,10 +106,10 @@ nav {
 
 .left_box {
   position: absolute;
-  top: 40%;
-  left: -512px;
-  width: 602px;
-  height: 602px;
+  top: 40.4%;
+  left: -427px;
+  width: 478px;
+  height: 478px;
   border: 1px dashed;
   border-color: #1a1b1c34;
   rotate: 45deg;
@@ -111,22 +120,23 @@ nav {
 .discover_btn {
   position: absolute;
   rotate: -45deg;
-  top: 120px;
-  left: 350px;
+  top: 94px;
+  left: 290px;
   background-color: #FFFFFF;
   border: none;
   cursor: pointer;
   z-index: 2;
+  transform: translateX(4px);
 }
 
 .lp-btn,
 .rp-btn {
-  height: 60px;
+  height: 42px;
 }
 
 .main_txt {
   position: absolute;
-  top: 50%;
+  top: 51%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -134,9 +144,9 @@ nav {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 128px;
+  font-size: 96px;
   font-weight: 100;
-  line-height: 130px;
+  line-height: 100px;
   width: 680px;
   height: 240px;
   z-index: 1;
@@ -147,23 +157,23 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 410px;
+  width: 350px;
   height: 72px;
-  top: 825px;
-  left: 10px;
-  letter-spacing: 0%;
-  font-size: 18px;
+  top: 610px;
+  left: 8px;
+  letter-spacing: -.2px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 20px;
   text-transform: uppercase;
 }
 
 .right_box {
   position: absolute;
-  top: 40%;
-  right: -86px;
-  width: 602px;
-  height: 602px;
+  top: 40.4%;
+  right: -89px;
+  width: 478px;
+  height: 478px;
   border: 1px dashed;
   border-color: #1a1b1c34;
   rotate: 45deg;
@@ -175,12 +185,13 @@ nav {
   rotate: -45deg;
   bottom: 85px;
   left: 30px;
-  top: 400px;
-  right: 350px;
+  top: 370px;
+  right: 345px;
   background-color: #FFFFFF;
   border: none;
   cursor: pointer;
   z-index: 2;
+  transform: translateX(14px);
 }
 
 .exp_btn-txt,
@@ -197,9 +208,9 @@ nav {
 
 .start_txt {
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 36px;
-  font-weight: 300;
+  font-weight: 600;
 }
 
 .rotate_container {
@@ -208,7 +219,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: -30%;
+  top: -15%;
 }
 
 .test_box-1 {
@@ -240,8 +251,8 @@ nav {
   position: absolute;
   width: 40px;
   height: 40px;
-  top: 88.6%;
-  left: 60px;
+  top: 89.7%;
+  left: 40px;
   border: 1px solid black;
   rotate: 45deg;
   background-color: #FFFFFF;
@@ -252,8 +263,8 @@ nav {
 
 .back_btn-txt {
   position: absolute;
-  top: 90.2%;
-  left: 110px;
+  top: 91.5%;
+  left: 90px;
   font-size: 14px;
   font-weight: 500;
   margin-left: 16px;
@@ -273,18 +284,16 @@ nav {
     transform: translateX(-10px);
 }
 
-.form_container {
-  position: relative;
-  top: 20%;
-}
-
 .test_form {
-  position: relative;
-  top: 38%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 52;
 }
 
 .test_intro-para {
@@ -299,6 +308,10 @@ nav {
   border: none;
   font-size: 62px;
   border-bottom: 1px solid #1A1B1C;
+  outline: none;
+  background: transparent;
+  position: relative;
+  z-index: 51;
   /* width: auto; */
 }
 
@@ -415,90 +428,91 @@ nav {
 /* --------------Test Page---------------------*/
 
   .rotate_container {
-  height: 100vh;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: -15%;
-}
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -15%;
+  }
 
-.test_box-1 {
-  position: absolute;
-  border: 1px dashed;
-  border-color: #1a1b1c34;
-  height: 350px;
-  width: 350px;
-  top: 70px;
-}
-.test_box-2 {
-  position: absolute;
-  border: 1px dashed;
-  border-color: #1a1b1c34;
-  height: 300px;
-  width: 300px;
-  top: 95px;
-}
-.test_box-3 {
-  position: absolute;
-  border: 1px dashed;
-  border-color: #1a1b1c34;
-  height: 250px;
-  width: 250px;
-  top: 120px;
-}
-
-.back_btn {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 70.6%;
-  left: 60px;
-  border: 1px solid black;
-  rotate: 45deg;
-  background-color: #FFFFFF;
-  border: 1px solid black;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.back_btn-txt {
-  position: absolute;
-  top: 72.5%;
-  left: 110px;
-  font-size: 14px;
-  font-weight: 500;
-  margin-left: 16px;
-  
-  z-index: 3;
-}
-
-.play-btn-logo-2 {
+  .test_box-1 {
     position: absolute;
-    padding: 4px;
+    border: 1px dashed;
+    border-color: #1a1b1c34;
+    height: 350px;
+    width: 350px;
+    top: 70px;
+  }
+  .test_box-2 {
+    position: absolute;
+    border: 1px dashed;
+    border-color: #1a1b1c34;
+    height: 300px;
+    width: 300px;
+    top: 95px;
+  }
+  .test_box-3 {
+    position: absolute;
+    border: 1px dashed;
+    border-color: #1a1b1c34;
+    height: 250px;
+    width: 250px;
+    top: 120px;
+  }
+  
+  .back_btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 70.6%;
+    left: 60px;
+    border: 1px solid black;
+    rotate: 45deg;
     background-color: #FFFFFF;
-    rotate: 135deg;
-    height: 20px;
-    width: 20px;
-    left: 0px;
-    top: 50%;
-    transform: translateX(-10px);
+    border: 1px solid black;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .back_btn-txt {
+    position: absolute;
+    top: 72.5%;
+    left: 110px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 16px;
+    
+    z-index: 3;
+  }
+  
+  .play-btn-logo-2 {
+      position: absolute;
+      padding: 4px;
+      background-color: #FFFFFF;
+      rotate: 135deg;
+      height: 20px;
+      width: 20px;
+      left: 0px;
+      top: 50%;
+      transform: translateX(-10px);
+  }
+  
+  .form {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border: 2px solid #000;
+    z-index: 10;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
-
-.form {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 15px;
-  border: 2px solid #000;
-  z-index: 10;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-}
-
+  
+  
