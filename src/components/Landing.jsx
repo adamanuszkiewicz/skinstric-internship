@@ -8,16 +8,13 @@ const Landing = () => {
   const navigate = useNavigate();
 
   const handleDiscoverClick = () => {
-    console.log('Discover button clicked')
   };
 
   const handleTakeTestClick = () => {
-    console.log('Take test button clicked');
     navigate('/testing');
   };
 
   const handleExperienceClick = () => {
-    console.log('Experience button clicked');
     navigate('/testing')
   }
 
@@ -39,7 +36,7 @@ const Landing = () => {
           <img className='rp-btn' src={ButtonIconRight} alt="Right pointing button" />
         </button>
       </div>
-      <div className="exp_btn">
+      <div className="exp_btn-container" onClick={handleExperienceClick}>
         <span className='exp_btn-txt'>ENTER EXPERIENCE</span>
         <button className='experience_btn' onClick={handleExperienceClick}>
           <img className='play-btn-logo' src={PlayBtnLogo} alt="Play button logo" />

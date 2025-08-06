@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import PlayBtnLogo from "../assete/play-btn-logo.png";
 import { useNavigate } from "react-router-dom";
+import BackButton from "./BackButton";
+import NextButton from "./NextButton";
 
 const Testing = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     location: "",
@@ -25,6 +29,7 @@ const Testing = () => {
   const handleLocationSubmit = async (e) => {
     e.preventDefault();
     if (formData.location.trim()) {
+      setIsLoading(true);
       try {
         const response = await fetch(
           `https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseOne`,
@@ -51,11 +56,11 @@ const Testing = () => {
           })
         );
 
-        console.log("Data saved successfully:", result);
-
-        alert("Data saved successfully!");
+        setIsLoading(false);
+        setShowSuccess(true);
       } catch (error) {
         console.error("Error saving data:", error);
+        setIsLoading(false);
         alert("Error saving data. Please try again.");
       }
     }
@@ -68,6 +73,13 @@ const Testing = () => {
     }));
   };
 
+  const handleNextClick = () => {
+    console.log("Next button clicked");
+    navigate('/results');
+  };
+
+  const isFormComplete = formData.name.trim() && formData.location.trim();
+
   return (
     <>
       <div className="test_container">
@@ -79,27 +91,39 @@ const Testing = () => {
           <div className="test_box-2"></div>
           <div className="test_box-3"></div>
           <div className="form_container">
-            {step === 1 ? (
+            {showSuccess ? (
+              <div className="success_message">
+                <p className="success_para-1">Thank you! </p>
+                <p className="success_para-2">Proceed to the next step</p>
+              </div>
+            ) : isLoading ? (
+              <div className="loading_state">
+                <div className="spinner"></div>
+                <div className="loading_text">Processing</div>
+              </div>
+            ) : step === 1 ? (
               <form className="test_form" onSubmit={handleNameSubmit}>
                 <p className="test_intro-para">Click to type</p>
-                <input 
+                <input
                   className="input_intro"
                   placeholder="Introduce Yourself"
                   type="text"
                   value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  autoFocus  
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  autoFocus
                 />
               </form>
             ) : (
               <form className="test_form" onSubmit={handleLocationSubmit}>
-                                <p className="test_intro-para">Where are you from?</p>
-                <input 
+                <p className="test_intro-para">your city name</p>
+                <input
                   className="input_intro"
                   placeholder="your city name"
                   type="text"
                   value={formData.location}
-                  onChange={(e) => handleInputChange('location', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("location", e.target.value)
+                  }
                   autoFocus
                 />
               </form>
@@ -107,14 +131,10 @@ const Testing = () => {
           </div>
         </div>
       </div>
-      <button className="back_btn" onClick={handleBackClick}>
-        <img
-          className="play-btn-logo-2"
-          src={PlayBtnLogo}
-          alt="Play button logo"
-        />
-      </button>
-      <p className="back_btn-txt">BACK</p>
+      {showSuccess && (
+        <NextButton />
+      )}
+      <BackButton />
     </>
   );
 };
