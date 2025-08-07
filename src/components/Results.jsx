@@ -1,60 +1,42 @@
 import React from 'react'
-import PlayBtnLogo from "../assete/play-btn-logo.png";
-import { useNavigate } from "react-router-dom";
+import BackButton from "./BackButton";
+import NextButton from "./NextButton";
+import CameraIcon from "../assete/camera-icon.webp";
+import GalleryIcon from "../assete/gallery-icon.webp";
+
 
 
 
 const Results = () => {
-  const navigate = useNavigate();
-
-  const handleBackClick = () => {
-    navigate("/");
-  };
-
-  const handleNextClick = () => {
-    navigate("/results")
-  };
-
   return (
-    <div>
-      <div className="results_container">
-        <div className="results_row">
-          <p className='results_intro'>To start analysis</p>
-        </div>
+    <div className="results_container">
+      <p className='results_intro'>To start analysis
+
+</p>
+      <div className="results_row">
         <div className="camra_container">
-          <div className="rotate_container">
-            <div className="test_box-1"></div>
-            <div className="test_box-2"></div>
-            <div className="test_box-3"></div>
+          <div className="test_box-4"></div>
+          <div className="test_box-5"></div>
+          <div className="test_box-6">
+             <img className="camera-icon" src={CameraIcon} alt="Camera icon" />
           </div>
         </div>
         <div className="photo_container">
-          <div className="rotate_container">
-            <div className="test_box-1"></div>
-            <div className="test_box-2"></div>
-            <div className="test_box-3"></div>
+          <div className="test_box-7"></div>
+          <div className="test_box-8"></div>
+          <div className="test_box-9">
+            <img className="gallery-icon" src={GalleryIcon} alt="" />
+          </div>
+        </div>
+        <div className="preview_container">
+          <p className='prev_para'>Preview</p>
+          <div className="small_box">
           </div>
         </div>
       </div>
       <div className="btns_container">
-        <button className="next_btn" onClick={handleNextClick}>
-          <img
-            className="play-btn-logo-2"
-            src={PlayBtnLogo}
-            alt="Play button logo"
-          />
-        </button>
-        <p className="next_btn-txt">PROCEED</p>
-      
-        <button className="back_btn" onClick={handleBackClick}>
-          <img
-            className="play-btn-logo-3"
-            src={PlayBtnLogo}
-            alt="Play button logo"
-          />
-        </button>
-        <p className="back_btn-txt">BACK</p>
-        
+        <BackButton navigateTo="/testing" />
+        <NextButton navigateTo="/select" />
       </div>
     </div>
   )

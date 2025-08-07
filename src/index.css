@@ -157,11 +157,11 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 350px;
+  width: 340px;
   height: 72px;
-  top: 610px;
+  bottom: 50px;
   left: 8px;
-  letter-spacing: -.2px;
+  letter-spacing: -.5px;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -203,17 +203,18 @@ nav {
   display: none;
 }
 
-/* -------------------------------- */
-/* Test Page */
+/* --------------Test Page------------------ */
+
 
 .start_txt {
   text-transform: uppercase;
   font-size: 12px;
+  letter-spacing: -.5px;
   margin-left: 36px;
   font-weight: 600;
 }
 
-.rotate_container {
+.testing_rotate-container {
   height: 100vh;
   width: 100%;
   position: relative;
@@ -230,7 +231,7 @@ nav {
   /* rotate: 55deg; */
   height: 550px;
   width: 550px;
-  animation: spin 55s linear infinite;
+  animation: spin 40s linear infinite;
 }
 .test_box-2 {
   position: absolute;
@@ -239,7 +240,7 @@ nav {
   /* rotate: 3deg; */
   height: 500px;
   width: 500px;
-  animation: spin 85s linear infinite;
+  /* animation: spin 85s linear infinite; */
 }
 .test_box-3 {
   position: absolute;
@@ -248,14 +249,19 @@ nav {
   /* rotate: 45deg; */
   height: 450px;
   width: 450px;
-  animation: spin 115s linear infinite;
+  /* animation: spin 115s linear infinite; */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .back_btn {
   position: absolute;
   width: 40px;
   height: 40px;
-  top: 89.7%;
+  top: 40%;
   left: 40px;
   border: 1px solid black;
   rotate: 45deg;
@@ -279,8 +285,8 @@ nav {
 
 .back_btn-txt {
   position: absolute;
-  top: 91.5%;
-  left: 90px;
+  top: 61%;
+  left: 92px;
   font-size: 14px;
   font-weight: 500;
   margin-left: 16px;
@@ -291,7 +297,7 @@ nav {
   position: absolute;
   width: 40px;
   height: 40px;
-  top: 91.6%;
+  top: 63%;
   right: 55px;
   transform: translateY(-50%);
   border: 1px solid black;
@@ -303,7 +309,7 @@ nav {
 
 .next_btn-txt {
   position: absolute;
-  top: 91.5%;
+  top: 63%;
   right: 100px;
   font-size: 14px;
   font-weight: 500;
@@ -382,10 +388,7 @@ nav {
   margin-bottom: 20px;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+
 
 .loading_text {
   font-size: 14px;
@@ -430,15 +433,39 @@ nav {
   position: relative;
   display: flex;
   flex-direction: column;
+  
 }
 
 .results_row {
   width: 100%;
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.camra_container {
   height: 100%;
+  width: 40%;
   position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border-right: 1px solid #e0e0e0; */
 }
+
+.photo_container {
+  height: 100%;
+  width: 40%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #f9f9f9; */
+}
+
+
 
 .btns_container {
   position: absolute;
@@ -453,34 +480,117 @@ nav {
 
 
 .results_intro {
+  position: relative;
+  top: 2px;
+  left: -4px;
   width: 160px;
   height: 30px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   margin: 20px 0 0 35px;
   letter-spacing: -.5px;
   text-transform: uppercase;
-  position: relative;
   z-index: 10;
-}
+} 
 
-.camra_container {
-  position: relative;
-  height: calc(100vh - 200px);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+ .test_box-4 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0d;
+    height: 340px;
+    width: 340px;
+    top: 70px;
+    animation: spin 55s linear infinite;
+    
+  }
+  
+  .test_box-5 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0e;
+    height: 320px;
+    width: 320px;
+    top: 80px;
+    animation: spin 85s linear infinite;
+  }
+  .test_box-6 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0f;
+    height: 300px;
+    width: 300px;
+    top: 90px;
+    animation: spin 115s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+ .test_box-7 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0d;
+    height: 340px;
+    width: 340px;
+    top: 70px;
+    animation: spin 55s linear infinite;
+    
+  }
+  
+  .test_box-8 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0e;
+    height: 320px;
+    width: 320px;
+    top: 80px;
+    animation: spin 85s linear infinite;
+  }
+  .test_box-9 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0f;
+    height: 300px;
+    width: 300px;
+    top: 90px;
+    animation: spin 115s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.photo_container {
-  width: 100%;
-  height: 100px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  margin: 20px 0;
-}
+   .camera-icon {
+    width: 136px;
+    height: 136px;
+    opacity: 0.8;
+    rotate: -5px;
+    animation: spin 115s linear infinite reverse;
+   }
 
+   .gallery-icon {
+    width: 136px;
+    height: 136px;
+    animation: spin 115s linear infinite reverse;
+   }
+
+  .preview_container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 60px;
+    height: 60px;
+    border-radius: 1px solid black;
+  }
+
+  .prev_para {
+    width: auto;
+    height: auto;
+  }
+
+  .small_box {
+    height: 36px;
+    width: 36px;
+    border-radius: 1px solid red;
+  }
 
 
 /* ---------------------------------- */
@@ -594,6 +704,8 @@ nav {
     transform: translate(-1px, -3px);
   }
 
+  
+
   .discover_btn,
   .take_test-btn {
     visibility: hidden;
@@ -637,12 +749,23 @@ nav {
     top: 120px;
     animation: spin 115s linear infinite;
   }
+
+  .btns_container {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+  }
   
   .back_btn {
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 89.6%;
+    top: 40%;
     left: 40px;
     border: 1px solid black;
     rotate: 45deg;
@@ -654,7 +777,7 @@ nav {
 
   .back_btn-txt {
     position: absolute;
-    top: 91.5%;
+    top: 60.5%;
     right: 100px;
     font-size: 14px;
     font-weight: 500;
@@ -666,8 +789,8 @@ nav {
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 87.5%;
-    right: 25px;
+    top: 16%;
+    right: 26px;
     transform: translateY(-50%);
     border: 1px solid black;
     rotate: 225deg;
@@ -837,7 +960,7 @@ nav {
     border-color: #1a1b1c0d;
     height: 300px;
     width: 300px;
-    top: 70px;
+    top: 215px;
     animation: spin 55s linear infinite;
   }
   .test_box-2 {
@@ -846,7 +969,7 @@ nav {
     border-color: #1a1b1c0e;
     height: 250px;
     width: 250px;
-    top: 95px;
+    top: 240px;
     animation: spin 85s linear infinite;
   }
   .test_box-3 {
@@ -855,13 +978,13 @@ nav {
       border-color: #1a1b1c0f;
       height: 200px;
       width: 200px;
-      top: 120px;
+      top: 265px;
       animation: spin 115s linear infinite;
     }
     
   .input_intro {
     position: absolute;
-    top: -170px;
+    top: -25px;
     width: 500px;
     text-align: center;
     border: none;
@@ -875,7 +998,7 @@ nav {
   
   .test_intro-para {
     position: absolute;
-    top: -200px;
+    top:-54px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -885,12 +1008,15 @@ nav {
     color: #1a1b1c5c;
   }
 
+  .btns_container {
+    bottom: 170px;
+  }
 
   .back_btn {
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 73%;
+    top: 55%;
     left: 57px;
     border: 1px solid black;
     rotate: 45deg;
@@ -898,6 +1024,15 @@ nav {
     border: 1px solid black;
     cursor: pointer;
     z-index: 2;
+  }
+
+    .back_btn-txt {
+    position: absolute;
+    top: 74.8%;
+    left: 108px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 3;
   }
 
   .play-btn-logo-3 {
@@ -912,20 +1047,11 @@ nav {
     transform: translate(-12px, 1px);
   }
 
-  .back_btn-txt {
-    position: absolute;
-    top: 74.8%;
-    left: 108px;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 3;
-  }
-
   .next_btn {
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 71.4%;
+    top: 30%;
     right: 35px;
     transform: translateY(-50%);
     border: 1px solid black;
@@ -966,7 +1092,7 @@ nav {
   
   .success_message {
     position: absolute;
-    top: 28%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -993,6 +1119,116 @@ nav {
     margin: 0;
     line-height: 1.4;
   }
+
+  /* ----------------------------- */
+
+
+
+  .results_row {
+    width: 100%;
+    height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    bottom: 30%;
+  }
+
+  .camra_container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 50px;
+    /* border-right: 1px solid #e0e0e0; */
+  }
+  
+  .photo_container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 80px;
+    /* background-color: #f9f9f9; */
+  }
+
+  .test_box-4 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0d;
+    height: 200px;
+    width: 200px;
+    top: 70px;
+    animation: spin 55s linear infinite;
+  }
+  .test_box-5 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0e;
+    height: 180px;
+    width: 180px;
+    top: 80px;
+    animation: spin 85s linear infinite;
+  }
+  .test_box-6 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0f;
+    height: 160px;
+    width: 160px;
+    top: 90px;
+    animation: spin 115s linear infinite;
+  }
+
+  .test_box-7 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0d;
+    height: 200px;
+    width: 200px;
+    top: 70px;
+    animation: spin 55s linear infinite;
+    
+  }
+  
+  .test_box-8 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0e;
+    height: 180px;
+    width: 180px;
+    top: 80px;
+    /* animation: spin 85s linear infinite; */
+  }
+  .test_box-9 {
+    position: absolute;
+    border: 3px dotted;
+    border-color: #1a1b1c0f;
+    height: 160px;
+    width: 160px;
+    top: 90px;
+    /* animation: spin 115s linear infinite; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+   .camera-icon {
+    width: 100px;
+    height: 100px;
+    opacity: 0.8;
+    /* animation: spin 55s linear infinite reverse; */
+   }
+
+   .gallery-icon {
+    width: 100px;
+    height: 100px;
+    /* No rotation animation for gallery icon */
+   }
 }
     
-/* @media (max-width: 640px;) */
+/* @media (max-width: 640px;)  for buttons BACK and NEXT will be inside the button.*/

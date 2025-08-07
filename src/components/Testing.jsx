@@ -14,11 +14,6 @@ const Testing = () => {
     location: "",
   });
 
-  const handleBackClick = () => {
-    console.log("Back button clicked");
-    navigate("/");
-  };
-
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (formData.name.trim()) {
@@ -73,11 +68,6 @@ const Testing = () => {
     }));
   };
 
-  const handleNextClick = () => {
-    console.log("Next button clicked");
-    navigate('/results');
-  };
-
   const isFormComplete = formData.name.trim() && formData.location.trim();
 
   return (
@@ -86,7 +76,7 @@ const Testing = () => {
         <p className="start_txt">To start analysis</p>
       </div>
       <div className="main_testing-container">
-        <div className="rotate_container">
+        <div className="testing_rotate-container">
           <div className="test_box-1"></div>
           <div className="test_box-2"></div>
           <div className="test_box-3"></div>
@@ -132,9 +122,13 @@ const Testing = () => {
         </div>
       </div>
       {showSuccess && (
-        <NextButton />
+        <div className="btns_container">
+          <NextButton className="test_btn-next" navigateTo="/results" />
+        </div>
       )}
-      <BackButton />
+      <div className="btns_container">
+      <BackButton className="test_btn-back" navigateTo="/" />
+      </div>
     </>
   );
 };

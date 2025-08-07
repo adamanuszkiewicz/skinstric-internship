@@ -2,12 +2,12 @@ import React from 'react'
 import PlayBtnLogo from "../assete/play-btn-logo.png";
 import { useNavigate } from "react-router-dom";
 
-function NextButton() {
+function NextButton({ navigateTo = '/results' }) {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    console.log("Next button clicked");
-    navigate('/results');
+    console.log("Next button clicked, navigating to:", navigateTo);
+    navigate(navigateTo);
   };
 
   return (

@@ -2,12 +2,12 @@ import React from 'react'
 import PlayBtnLogo from "../assete/play-btn-logo.png";
 import { useNavigate } from "react-router-dom";
 
-const BackButton = () => {
+const BackButton = ({ navigateTo = '/' }) => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    console.log("Back button clicked");
-    navigate("/");
+    console.log("Back button clicked, navigating to:", navigateTo);
+    navigate(navigateTo);
   };
 
 
