@@ -10,9 +10,7 @@ import GalleryIcon from "../assete/gallery-icon.webp";
 const Results = () => {
   return (
     <div className="results_container">
-      <p className='results_intro'>To start analysis
-
-</p>
+      <p className='results_intro'>To start analysis</p>
       <div className="results_row">
         <div className="camra_container">
           <div className="test_box-4"></div>

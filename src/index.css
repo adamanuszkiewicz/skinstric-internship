@@ -80,7 +80,7 @@ nav {
 .intro_txt {
   margin: 0 -6px;
   font-size: 10px;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   color: #1a1b1c82;
 }
 
@@ -103,6 +103,11 @@ nav {
 /*-----------------------------------------*/
 
 /* Landing */
+
+.container {
+  height: 100vh;
+  width: 100%;
+}
 
 .left_box {
   position: absolute;
@@ -361,7 +366,6 @@ nav {
   background: transparent;
   position: relative;
   z-index: 51;
-  /* width: auto; */
 }
 
 /* -------------Loading State--------------------- */
@@ -387,8 +391,6 @@ nav {
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
 }
-
-
 
 .loading_text {
   font-size: 14px;
@@ -433,7 +435,6 @@ nav {
   position: relative;
   display: flex;
   flex-direction: column;
-  
 }
 
 .results_row {
@@ -452,7 +453,6 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border-right: 1px solid #e0e0e0; */
 }
 
 .photo_container {
@@ -462,10 +462,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #f9f9f9; */
 }
-
-
 
 .btns_container {
   position: absolute;
@@ -478,6 +475,13 @@ nav {
   padding: 0 40px;
 }
 
+.testing_introduction {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .results_intro {
   position: relative;
@@ -500,8 +504,8 @@ nav {
     height: 340px;
     width: 340px;
     top: 70px;
+    bottom: 0;
     animation: spin 55s linear infinite;
-    
   }
   
   .test_box-5 {
@@ -511,6 +515,7 @@ nav {
     height: 320px;
     width: 320px;
     top: 80px;
+    bottom: 0;
     animation: spin 85s linear infinite;
   }
   .test_box-6 {
@@ -520,6 +525,7 @@ nav {
     height: 300px;
     width: 300px;
     top: 90px;
+    bottom: 0;
     animation: spin 115s linear infinite;
     display: flex;
     justify-content: center;
@@ -533,7 +539,6 @@ nav {
     width: 340px;
     top: 70px;
     animation: spin 55s linear infinite;
-    
   }
   
   .test_box-8 {
@@ -596,39 +601,69 @@ nav {
 /* ---------------------------------- */
 
 @media (max-width: 1023px) {
+/* 
+  .container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  } */
+
+  .box_container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    bottom: 20px;
+    left: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+
   .left_box {
     position: absolute;
-    top: 284px;
-    left: 211px;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-195px, 75px);
     width: 350px;
     height: 350px;
     border: 1px dashed;
     border-color: #1a1b1c34;
     rotate: 45deg;
-    /* transform: translateX(50px); */
-    transform: translateY(-130px);
-    z-index: 1;
   }
-
   .right_box {
     position: absolute;
-    top: 285px;
-    left: 141px;
+    bottom: 275px;
+    left: 50%;
+    transform: translate(-245px, 75px);
     width: 420px;
     height: 420px;
     border: 1px dashed;
     border-color: #1a1b1c34;
     rotate: 45deg;
-    /* transform: translateX(-10px); */
-    transform: translateY(-180px);
-    z-index: 1;
+  }
+
+  .box_container-text {
+    position: absolute;
+    top: 59vh;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: auto;
+    z-index: 10;
   }
 
   .main_txt {
-    position: absolute;
-    top: 305px;
-    left: 480px;
-    transform: translate(-50%, -50%);
+    position: relative;
+    width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -636,42 +671,39 @@ nav {
     text-align: center;
     font-size: 60px;
     font-weight: 100;
-    width: 300px;
-    height: 60px;
     z-index: 1;
     line-height: 60px;
     letter-spacing: -1px;
   }
 
   .para-1{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 330px;
-    left: 305px;
-    top: 380px;
-    margin-left: 12px;
-    letter-spacing: 0px;
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    padding: 0 20px;
     font-size: 16px;
     font-weight: 600;
+    letter-spacing: -.5px;
     line-height: 24px;
     text-align: center;
-    color: #1a1b1c9d;
+    color: #1a1b1c95;
     text-transform: none;
   }
-
+  
   .exp_btn-container {
+    position: relative;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     cursor: pointer;
-    position: absolute;
     z-index: 3;
   }
 
   .exp_btn-txt {
-    position: absolute;
-    width: 150px;
-    top: 405px;
-    left: 400px;
+    position: relative;
     font-weight: 700;
     display: block;
     font-size: 12px;
@@ -679,9 +711,7 @@ nav {
   }
 
   .experience_btn {
-    position: absolute;
-    top: 400px;
-    left: 540px;
+    position: relative;
     padding: 10px;
     width: 20px;
     height: 20px;
@@ -704,7 +734,6 @@ nav {
     transform: translate(-1px, -3px);
   }
 
-  
 
   .discover_btn,
   .take_test-btn {
@@ -832,40 +861,71 @@ nav {
   }
 }
 
-@media (max-width: 768px) {
+ /* ----------------------------------------------- */
 
-  /* ------------------------------ */
+@media (max-width: 768px) {
+/* ----------------Landing-----------------*/
+  /* .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  } */
+
+  .box_container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    bottom: 20px;
+    left: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+
   .left_box {
     position: absolute;
-    top: 274px;
-    left: 115px;
-    width: 350px;
-    height: 350px;
+    bottom: 10px;
+    left: 59.5%;
+    transform: translate(-160.5px, 105px);
+    width: 250px;
+    height: 250px;
     border: 1px dashed;
     border-color: #1a1b1c34;
     rotate: 45deg;
-    /* transform: translateX(50px); */
-    transform: translateY(-120px);
+  }
+  .right_box { /*larger box*/
+    position: absolute;
+    bottom: 275px;
+    left: 54%;
+    transform: translate(-190px, 85px);
+    width: 320px;
+    height: 320px;
+    border: 1px dashed;
+    border-color: #1a1b1c34;
+    rotate: 45deg;
   }
 
-  .right_box {
+  .box_container-text {
     position: absolute;
-    top: 275px;
-    left: 45px;
-    width: 420px;
-    height: 420px;
-    border: 1px dashed;
-    border-color: #1a1b1c34;
-    rotate: 45deg;
-    /* transform: translateX(-10px); */
-    transform: translateY(-170px);
+    top: 59vh;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: auto;
+    z-index: 10;
   }
 
   .main_txt {
-    position: absolute;
-    top: 275px;
-    left: 380px;
-    transform: translate(-50%, -50%);
+    position: relative;
+    width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -873,50 +933,47 @@ nav {
     text-align: center;
     font-size: 60px;
     font-weight: 100;
-    width: 300px;
-    height: 60px;
     z-index: 1;
     line-height: 60px;
+    letter-spacing: -1px;
   }
 
   .para-1{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 330px;
-    left: 200px;
-    top: 350px;
-    margin-left: 12px;
-    letter-spacing: 0px;
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    padding: 0 20px;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: -.5px;
     line-height: 24px;
     text-align: center;
-    color: #1a1b1c9d;
+    color: #1a1b1c95;
     text-transform: none;
   }
-
-  .exp_btn-txt {
-    position: absolute;
-    top: 380px;
-    left: 300px;
-    font-weight: 700;
-    display: block;
-    font-size: 12px;
-    z-index: 10;
-  }
-
+  
   .exp_btn-container {
+    position: relative;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     cursor: pointer;
-    /* position: relative; */
     z-index: 3;
   }
 
+  .exp_btn-txt {
+    position: relative;
+    font-weight: 700;
+    display: block;
+    font-size: 12px;
+    z-index: 50;
+  }
+
   .experience_btn {
-    position: absolute;
-    top: 375px;
-    left: 435px;
+    position: relative;
     padding: 10px;
     width: 20px;
     height: 20px;
@@ -924,7 +981,7 @@ nav {
     rotate: 45deg;
     display: block;
     cursor: pointer;
-    z-index: 20;
+    z-index: 50;
   }
 
   .play-btn-logo {
@@ -943,7 +1000,7 @@ nav {
   .take_test-btn {
     visibility: hidden;
   }
-  /* ------------------------------ */
+  /* -------------Test----------------- */
 
   .rotate_container {
     height: 100vh;
@@ -982,13 +1039,17 @@ nav {
       animation: spin 115s linear infinite;
     }
     
+  .testing_introduction {
+    top: 0px;
+  }
+
   .input_intro {
     position: absolute;
-    top: -25px;
-    width: 500px;
+    top: -20px;
+    width: 400px;
     text-align: center;
     border: none;
-    font-size: 58px;
+    font-size: 48px;
     border-bottom: 1px solid #1a1b1c28;
     outline: none;
     background: transparent;

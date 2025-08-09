@@ -75,24 +75,24 @@ const Testing = () => {
       <div className="test_container">
         <p className="start_txt">To start analysis</p>
       </div>
-      <div className="main_testing-container">
-        <div className="testing_rotate-container">
-          <div className="test_box-1"></div>
-          <div className="test_box-2"></div>
-          <div className="test_box-3"></div>
-          <div className="form_container">
-            {showSuccess ? (
-              <div className="success_message">
-                <p className="success_para-1">Thank you! </p>
-                <p className="success_para-2">Proceed to the next step</p>
-              </div>
-            ) : isLoading ? (
-              <div className="loading_state">
-                <div className="spinner"></div>
-                <div className="loading_text">Processing</div>
-              </div>
-            ) : step === 1 ? (
-              <form className="test_form" onSubmit={handleNameSubmit}>
+      <div className="testing_rotate-container">
+        <div className="test_box-1"></div>
+        <div className="test_box-2"></div>
+        <div className="test_box-3"></div>
+        <div className="form_container">
+          {showSuccess ? (
+            <div className="success_message">
+              <p className="success_para-1">Thank you! </p>
+              <p className="success_para-2">Proceed for the next step</p>
+            </div>
+          ) : isLoading ? (
+            <div className="loading_state">
+              <div className="spinner"></div>
+              <div className="loading_text">Processing submission</div>
+            </div>
+          ) : step === 1 ? (
+            <form className="test_form" onSubmit={handleNameSubmit}>
+              <div className="testing_introduction">
                 <p className="test_intro-para">Click to type</p>
                 <input
                   className="input_intro"
@@ -102,23 +102,23 @@ const Testing = () => {
                   onChange={(e) => handleInputChange("name", e.target.value)}
                   autoFocus
                 />
-              </form>
-            ) : (
-              <form className="test_form" onSubmit={handleLocationSubmit}>
-                <p className="test_intro-para">your city name</p>
-                <input
-                  className="input_intro"
-                  placeholder="your city name"
-                  type="text"
-                  value={formData.location}
-                  onChange={(e) =>
-                    handleInputChange("location", e.target.value)
-                  }
-                  autoFocus
-                />
-              </form>
-            )}
-          </div>
+              </div>
+            </form>
+          ) : (
+            <form className="test_form" onSubmit={handleLocationSubmit}>
+              <p className="test_intro-para">your city name</p>
+              <input
+                className="input_intro"
+                placeholder="your city name"
+                type="text"
+                value={formData.location}
+                onChange={(e) =>
+                  handleInputChange("location", e.target.value)
+                }
+                autoFocus
+              />
+            </form>
+          )}
         </div>
       </div>
       {showSuccess && (
