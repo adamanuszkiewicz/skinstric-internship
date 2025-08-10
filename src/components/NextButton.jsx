@@ -20,7 +20,7 @@ function NextButton({ navigateTo = '/results' }) {
           alt="Play button logo"
         />
       </button>
-      <p className="next_btn-txt">PROCEED</p>
+      <p className="next_btn-txt"  onClick={handleNextClick}>PROCEED</p>
       </div>
     </>
   )

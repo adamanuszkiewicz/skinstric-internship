@@ -10,7 +10,6 @@ const BackButton = ({ navigateTo = '/' }) => {
     navigate(navigateTo);
   };
 
-
   return (
     <>
       <div className="back_btn-container">
@@ -21,7 +20,8 @@ const BackButton = ({ navigateTo = '/' }) => {
             alt="Play button logo"
           />
         </button>
-        <p className="back_btn-txt">BACK</p>
+        <p className="back_btn-txt" onClick={handleBackClick}>BACK</p>
+        
       </div>
     </>
   )

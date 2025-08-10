@@ -88,7 +88,7 @@ const Testing = () => {
           ) : isLoading ? (
             <div className="loading_state">
               <div className="spinner"></div>
-              <div className="loading_text">Processing submission</div>
+              <div className="loading_text" >Processing submission</div>
             </div>
           ) : step === 1 ? (
             <form className="test_form" onSubmit={handleNameSubmit}>
@@ -124,10 +124,12 @@ const Testing = () => {
       {showSuccess && (
         <div className="btns_container">
           <NextButton className="test_btn-next" navigateTo="/results" />
+          
         </div>
       )}
       <div className="btns_container">
       <BackButton className="test_btn-back" navigateTo="/" />
+      
       </div>
     </>
   );

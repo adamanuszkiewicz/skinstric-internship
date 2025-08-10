@@ -56,14 +56,17 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 8px;
+  text-align: center;
+  width: 65px;
+  height: 24px;
   font-weight: 600;
+  margin-left: 28px;
   background-color: #FFFFFF;
   cursor: pointer;
   font-size: 10px;
   text-transform: uppercase;
-  border: none;
+  border: 0px solid #1A1B1C;
+  border-radius: 4px;
   transform: translate(-20px, 2px);
 }
 
@@ -72,15 +75,13 @@ nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  left: -55px;
+  left: -28px;
   top: 2px;
-  /* transform: translateY(2px); */
 }
 
 .intro_txt {
   margin: 0 -6px;
   font-size: 10px;
-  /* white-space: nowrap; */
   color: #1a1b1c82;
 }
 
@@ -226,35 +227,35 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: -15%;
+  top: -11%;
 }
 
 .test_box-1 {
   position: absolute;
   border: 3px dotted;
   border-color: #1a1b1c0c;
-  /* rotate: 55deg; */
+  rotate: 45deg;
   height: 550px;
   width: 550px;
-  animation: spin 40s linear infinite;
+  animation: spin 50s linear infinite;
 }
 .test_box-2 {
   position: absolute;
   border: 3px dotted;
   border-color: #1a1b1c20;
-  /* rotate: 3deg; */
+  rotate: 45deg;
   height: 500px;
   width: 500px;
-  /* animation: spin 85s linear infinite; */
+  animation: spin 85s linear infinite;
 }
 .test_box-3 {
   position: absolute;
   border: 3px dotted;
   border-color: #1a1b1c1d;
-  /* rotate: 45deg; */
+  rotate: 45deg;
   height: 450px;
   width: 450px;
-  /* animation: spin 115s linear infinite; */
+  animation: spin 115s linear infinite;
 }
 
 @keyframes spin {
@@ -355,7 +356,7 @@ nav {
 }
 
 .input_intro {
-  width: 500px;
+  width: 450px;
   text-align: center;
   border: none;
   font-size: 54px;
@@ -451,6 +452,7 @@ nav {
   width: 40%;
   position: relative;
   display: flex;
+  bottom: 0px;
   justify-content: center;
   align-items: center;
 }
@@ -459,6 +461,7 @@ nav {
   height: 100%;
   width: 40%;
   position: relative;
+  bottom: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -531,7 +534,7 @@ nav {
     justify-content: center;
     align-items: center;
   }
- .test_box-7 {
+  .test_box-7 {
     position: absolute;
     border: 3px dotted;
     border-color: #1a1b1c0d;
@@ -742,40 +745,46 @@ nav {
 
 /* --------------Test Page---------------------*/
 
-  .rotate_container {
+  .testing_rotate-container {
     height: 100vh;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: -13%;
+    top: -14%;
   }
 
   .test_box-1 {
     position: absolute;
     border: 3px dotted;
     border-color: #1a1b1c34;
-    height: 550px;
-    width: 550px;
-    top: 70px;
+    height: 515px;
+    width: 515px;
+    /* top: 70px; */
+    bottom: -10;
+    rotate: 45deg;
     animation: spin 55s linear infinite;
   }
   .test_box-2 {
     position: absolute;
     border: 3px dotted;
     border-color: #1a1b1c34;
-    height: 500px;
-    width: 500px;
-    top: 95px;
+    height: 475px;
+    width: 475px;
+    /* top: 95px; */
+    bottom: -10;
+    rotate: 45deg;
     animation: spin 85s linear infinite;
   }
   .test_box-3 {
     position: absolute;
     border: 3px dotted;
     border-color: #1a1b1c34;
-    height: 450px;
-    width: 450px;
-    top: 120px;
+    height: 430px;
+    width: 430px;
+    /* top: 120px; */
+    bottom: -10;
+    rotate: 45deg;
     animation: spin 115s linear infinite;
   }
 
@@ -865,21 +874,13 @@ nav {
 
 @media (max-width: 768px) {
 /* ----------------Landing-----------------*/
-  /* .container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  } */
 
   .box_container {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    bottom: 20px;
-    left: 6px;
+    bottom: 24px;
+    left: -12px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -888,10 +889,10 @@ nav {
   .left_box {
     position: absolute;
     bottom: 10px;
-    left: 59.5%;
-    transform: translate(-160.5px, 105px);
-    width: 250px;
-    height: 250px;
+    left: 57.5%;
+    transform: translate(-218.5px, 103px);
+    width: 350px;
+    height: 350px;
     border: 1px dashed;
     border-color: #1a1b1c34;
     rotate: 45deg;
@@ -900,9 +901,9 @@ nav {
     position: absolute;
     bottom: 275px;
     left: 54%;
-    transform: translate(-190px, 85px);
-    width: 320px;
-    height: 320px;
+    transform: translate(-250px, 85px);
+    width: 420px;
+    height: 420px;
     border: 1px dashed;
     border-color: #1a1b1c34;
     rotate: 45deg;
@@ -924,7 +925,9 @@ nav {
 
   .main_txt {
     position: relative;
+    left: 160px;
     width: 100%;
+    max-width: 300px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -956,6 +959,7 @@ nav {
   .exp_btn-container {
     position: relative;
     bottom: 18px;
+    left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1015,41 +1019,41 @@ nav {
     position: absolute;
     border: 3px dotted;
     border-color: #1a1b1c0d;
-    height: 300px;
-    width: 300px;
-    top: 215px;
+    height: 340px;
+    width: 340px;
+    bottom: 130px;
     animation: spin 55s linear infinite;
   }
   .test_box-2 {
     position: absolute;
     border: 3px dotted;
     border-color: #1a1b1c0e;
-    height: 250px;
-    width: 250px;
-    top: 240px;
+    height: 290px;
+    width: 290px;
+    bottom: 155px;
     animation: spin 85s linear infinite;
   }
   .test_box-3 {
       position: absolute;
       border: 3px dotted;
       border-color: #1a1b1c0f;
-      height: 200px;
-      width: 200px;
-      top: 265px;
+      height: 240px;
+      width: 240px;
+      bottom: 180px;
       animation: spin 115s linear infinite;
     }
     
   .testing_introduction {
-    top: 0px;
+    top: 30px;
   }
 
   .input_intro {
     position: absolute;
-    top: -20px;
-    width: 400px;
+    top: -24px;
+    width: 420px;
     text-align: center;
     border: none;
-    font-size: 48px;
+    font-size: 58px;
     border-bottom: 1px solid #1a1b1c28;
     outline: none;
     background: transparent;
@@ -1059,7 +1063,7 @@ nav {
   
   .test_intro-para {
     position: absolute;
-    top:-54px;
+    top:-53px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1292,4 +1296,250 @@ nav {
    }
 }
     
-/* @media (max-width: 640px;)  for buttons BACK and NEXT will be inside the button.*/
+ @media (max-width: 640px)  {
+    .box_container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    bottom: 25px;
+    left: -2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+
+  .left_box {
+    position: absolute;
+    bottom: 10px;
+    left: 57.5%;
+    transform: translate(-158.5px, 100px);
+    width: 264px;
+    height: 264px;
+    border: 1px dashed;
+    border-color: #1a1b1c34;
+    rotate: 45deg;
+  }
+  .right_box { /*larger box*/
+    position: absolute;
+    bottom: 275px;
+    left: 54%;
+    transform: translate(-180px, 85px);
+    width: 315px;
+    height: 315px;
+    border: 1px dashed;
+    border-color: #1a1b1c34;
+    rotate: 45deg;
+  }
+
+  .box_container-text {
+    position: absolute;
+    top: 59vh;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: auto;
+    z-index: 10;
+  }
+
+  .main_txt {
+    position: relative;
+    bottom: 6px;
+    left: 150px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 42px;
+    font-weight: 100;
+    z-index: 1;
+    line-height: 42px;
+    letter-spacing: -1px;
+    color: #1A1B1C;
+  }
+
+  .para-1{
+    position: relative;
+    bottom: 30px;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -.5px;
+    line-height: 16px;
+    text-align: center;
+    color: #1a1b1c69;
+  }
+  
+  .exp_btn-container {
+    position: relative;
+    bottom: 36px;
+    left: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  .exp_btn-txt {
+    position: relative;
+    font-weight: 700;
+    display: block;
+    font-size: 10px;
+    z-index: 50;
+  }
+
+  .experience_btn {
+    position: relative;
+    padding: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: #FFFFFF;
+    rotate: 45deg;
+    display: block;
+    cursor: pointer;
+    z-index: 50;
+  }
+
+ .input_intro {
+    position: absolute;
+    top: -20px;
+    width: 420px;
+    text-align: center;
+    border: none;
+    font-size: 48px;
+    border-bottom: 1px solid #1a1b1c28;
+    outline: none;
+    background: transparent;
+    letter-spacing: -2px;
+    z-index: 51;
+  }
+
+   .back_btn {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    top: 47%;
+    left: 52px;
+    border: 1px solid black;
+    rotate: 45deg;
+    background-color: #ffffff00;
+    border: 1px solid black;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .back_btn-txt {
+    position: absolute;
+    top: 76%;
+    left: 44px;
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 3;
+    cursor: pointer;
+    /* display: none; */
+  }
+
+
+
+  .next_btn {
+    position: absolute;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    top: 20%;
+    right: 36px;
+    transform: translateY(-50%);
+    border: 1px solid black;
+    rotate: 225deg;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .next_btn-txt {
+    position: absolute;
+    top: 78%;
+    right: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 16px;
+    z-index: 3;
+    cursor: pointer;
+  }
+
+ 
+
+  .play-btn-logo-2 {
+    position: absolute;
+    color: #1A1B1C;
+    padding: 4px;
+    background-color: #FFFFFF;
+    rotate: -45deg;
+    height: 20px;
+    width: 20px;
+    left: 18px;
+    top: 0;
+    transform: translateX(-10px);
+    display: none;
+}
+
+  .play-btn-logo-3 {
+    position: absolute;
+    padding: 4px;
+    background-color: #FFFFFF;
+    rotate: 135deg;
+    height: 20px;
+    width: 20px;
+    left: 0px;
+    top: 50%;
+    transform: translate(-12px, 1px);
+    display: none;
+  }
+
+  .success_message {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    z-index: 54;
+  }
+
+  .success_para-1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1A1B1C;
+    margin: 0;
+    line-height: 3;
+  }
+
+  .success_para-2 {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1b1cee;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+}
+ 
