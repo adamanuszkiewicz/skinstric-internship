@@ -1,26 +1,37 @@
 import React from 'react'
 import PlayBtnLogo from "../assete/play-btn-logo.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function NextButton({ navigateTo = '/results' }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNextClick = () => {
     console.log("Next button clicked, navigating to:", navigateTo);
     navigate(navigateTo);
   };
 
+  const isSelectPage = location.pathname === '/select';
+
   return (
     <>
       <div className="next_btn-container">
       <button className="next_btn" onClick={handleNextClick}>
         <img
-          className="play-btn-logo-2"
+          className={`play-btn-logo-2 ${isSelectPage ? 'select-page-logo' : ''}`}
           src={PlayBtnLogo}
           alt="Play button logo"
         />
+        {isSelectPage && (
+          <span className="summary_btn-txt" onClick={handleNextClick}>SUM</span>
+        )}
       </button>
-      <p className="next_btn-txt"  onClick={handleNextClick}>PROCEED</p>
+      {!isSelectPage && (
+        <>
+          <p className="next_btn-txt" onClick={handleNextClick}>PROCEED</p>
+          <p className="next_btn-txt-2" onClick={handleNextClick}>PROCEED</p>
+        </>
+      )}
       </div>
     </>
   )

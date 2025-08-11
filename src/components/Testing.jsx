@@ -87,7 +87,11 @@ const Testing = () => {
             </div>
           ) : isLoading ? (
             <div className="loading_state">
-              <div className="spinner"></div>
+              <div className="wave_dots">
+                <div className="dot dot1"></div>
+                <div className="dot dot2"></div>
+                <div className="dot dot3"></div>
+              </div>
               <div className="loading_text" >Processing submission</div>
             </div>
           ) : step === 1 ? (
@@ -124,12 +128,10 @@ const Testing = () => {
       {showSuccess && (
         <div className="btns_container">
           <NextButton className="test_btn-next" navigateTo="/results" />
-          
         </div>
       )}
       <div className="btns_container">
       <BackButton className="test_btn-back" navigateTo="/" />
-      
       </div>
     </>
   );
