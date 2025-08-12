@@ -11,7 +11,7 @@ const Select = () => {
   };
   
   return (
-    <div>
+    <>
       <div className="select_header">
         <h1 className='select_intro'>A.I. Analysis</h1>
         <p className='select_para'>A.I. has estimated the following. <br/>Fix Estimated Information if needed.</p>
@@ -27,7 +27,7 @@ const Select = () => {
         <p className='summary_btn-text'>Get Summary</p>
         <BackButton className="test_btn-next" navigateTo="/results"/>
       </div>
-    </div>
+    </>
   )
 }
 
