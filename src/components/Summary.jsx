@@ -1,9 +1,127 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import BackButton from './BackButton'
 import NextButton from './NextButton'
+import DiamondImg from '../assete/diamond-img.webp'
 
 const Summary = () => {
+  const [apiData, setApiData] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('race'); // Default to race
+  const [displayData, setDisplayData] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null); // Track selected individual item
+
+  useEffect(() => {
+    // Add class to body to enable scrolling on summary page
+    document.body.classList.add('summary-page');
+    
+    // Get API data from localStorage
+    const storedData = localStorage.getItem('skinstricAnalysisResult');
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData);
+        setApiData(parsedData);
+        console.log('API Data:', parsedData); // Log to console for debugging
+        
+        // Set initial display data to race data
+        if (parsedData && parsedData.data && parsedData.data.race) {
+          setDisplayData(processPercentageData(parsedData.data.race));
+        }
+      } catch (error) {
+        console.error('Error parsing stored API data:', error);
+      }
+    }
+
+    // Cleanup function to remove class when component unmounts
+    return () => {
+      document.body.classList.remove('summary-page');
+    };
+  }, []);
+
+  // Function to process percentage data and sort from highest to lowest
+  const processPercentageData = (data) => {
+    if (!data || typeof data !== 'object') return [];
+    
+    return Object.entries(data)
+      .map(([key, value]) => ({
+        name: key.split(' ').map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' '), // Capitalize each word
+        percentage: parseFloat(value) * 100 // Convert decimal to percentage
+      }))
+      .sort((a, b) => b.percentage - a.percentage);
+  };
+
+  // Handle button clicks
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setSelectedItem(null); // Reset selected item when category changes
+    
+    if (!apiData || !apiData.data) return;
+    
+    let dataToProcess = null;
+    
+    switch (category) {
+      case 'race':
+        dataToProcess = apiData.data.race || {};
+        break;
+      case 'age':
+        dataToProcess = apiData.data.age || {};
+        break;
+      case 'sex':
+        dataToProcess = apiData.data.gender || {};
+        break;
+      default:
+        dataToProcess = {};
+    }
+    
+    setDisplayData(processPercentageData(dataToProcess));
+  };
+
+  // Handle clicking on individual items (like "Male", "Female")
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  // Get the top percentage for the selected category
+  const getTopPercentage = () => {
+    if (selectedItem) {
+      return selectedItem.percentage; // Use selected item's percentage
+    }
+    if (displayData.length === 0) return 0;
+    return displayData[0].percentage; // First item is highest due to sorting
+  };
+
+  // Get the top predicted value for each category
+  const getTopPrediction = (category) => {
+    if (!apiData || !apiData.data) return 'N/A';
+    
+    let categoryData = null;
+    
+    switch (category) {
+      case 'race':
+        categoryData = apiData.data.race || {};
+        break;
+      case 'age':
+        categoryData = apiData.data.age || {};
+        break;
+      case 'sex':
+        categoryData = apiData.data.gender || {};
+        break;
+      default:
+        return 'N/A';
+    }
+    
+    // Find the key with the highest percentage
+    if (Object.keys(categoryData).length === 0) return 'N/A';
+    
+    const topEntry = Object.entries(categoryData)
+      .reduce((max, [key, value]) => 
+        parseFloat(value) > parseFloat(max[1]) ? [key, value] : max
+      );
+    
+    return topEntry[0];
+  };
+
   return (
     <div className='summary_container'>
       <div className="summary_header-container">
@@ -11,27 +129,142 @@ const Summary = () => {
         <h3 className='dem_txt'>Demographics</h3>
         <h4 className='pred_txt'>Predicted race & age</h4>
       </div>
+      
+      {/* Display raw API data for debugging */}
+      {/* {apiData && (
+        <div style={{ 
+          margin: '20px', 
+          padding: '20px', 
+          backgroundColor: '#f5f5f5', 
+          borderRadius: '8px',
+          fontFamily: 'monospace',
+          fontSize: '12px',
+          overflow: 'auto',
+          maxHeight: '300px'
+        }}>
+          <h4>API Response Data:</h4>
+          <pre>{JSON.stringify(apiData, null, 2)}</pre>
+        </div>
+      )} */}
+
       <div className="dem_container">
         <div className="pred_row">
-          <div className="pred_race">
-            <h2 className='race'></h2>
-            <p>RACE</p>
+          <div 
+            className={`pred_race ${selectedCategory === 'race' ? 'active' : ''}`}
+            onClick={() => handleCategoryClick('race')}
+            style={{ cursor: 'pointer' }}
+          >
+            <h2 className='race'>{getTopPrediction('race').charAt(0).toUpperCase() + getTopPrediction('race').slice(1).toLowerCase()}</h2>
+            <p className='race-txt'>RACE</p>
           </div>
-          <div className="pred_age">
-            <h2 className='age'></h2>
+          <div 
+            className={`pred_age ${selectedCategory === 'age' ? 'active' : ''}`}
+            onClick={() => handleCategoryClick('age')}
+            style={{ cursor: 'pointer' }}
+          >
+            <h2 className='age'>{getTopPrediction('age')}</h2>
             <p className='age_txt'>AGE</p>
           </div>
-          <div className="pred_sex">
-            <h2 className='sex'></h2>
+          <div 
+            className={`pred_sex ${selectedCategory === 'sex' ? 'active' : ''}`}
+            onClick={() => handleCategoryClick('sex')}
+            style={{ cursor: 'pointer' }}
+          >
+            <h2 className='sex'>{getTopPrediction('sex').toUpperCase()}</h2>
             <p className='sex_txt'>SEX</p>
           </div>
         </div>
         <div className="graph_container">
-          <p className='race_txt'>Latino</p>
+          <div className="graph_row">
+            <p className='race_txt'>
+              {selectedCategory === 'race' ? getTopPrediction('race').charAt(0).toUpperCase() + getTopPrediction('race').slice(1).toLowerCase() : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1) + getTopPrediction(selectedCategory)}
+            </p>
+          </div>
+          <div className="graph_box">
+            <div className="graph">
+                <p className='graph_percentage'>{getTopPercentage().toFixed(0)}%</p>
+              <div className="outer">
+                <div className="inner">
+                </div>
+              </div>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                version="1.1" 
+                width="420px" 
+                height="420px"
+                style={{ position: 'absolute', top: '-60px', left: '-60px' }}
+              >
+                <defs>
+                  <linearGradient id="GradientColor">
+                    <stop offset="0%" stopColor="#1a1b1c" />
+                    <stop offset="100%" stopColor="#1a1b1c" />
+                  </linearGradient>
+                </defs>
+                {/* Background circle for non-filled portion */}
+                <circle 
+                  cx="210" 
+                  cy="210" 
+                  r="197" 
+                  strokeLinecap="round" 
+                  style={{
+                    fill: 'none',
+                    stroke: '#c0c0c0',
+                    strokeWidth: '7px',
+                    transform: 'rotate(-90deg)',
+                    transformOrigin: '210px 210px'
+                  }}
+                />
+                {/* Progress circle */}
+                <circle 
+                  cx="210" 
+                  cy="210" 
+                  r="197" 
+                  strokeLinecap="round" 
+                  style={{
+                    fill: 'none',
+                    stroke: 'url(#GradientColor)',
+                    strokeWidth: '7px',
+                    strokeDasharray: '1238', 
+                    strokeDashoffset: `${1238 - (getTopPercentage() / 100) * 1238}`,
+                    transition: 'stroke-dashoffset 1s ease-in-out',
+                    transform: 'rotate(-90deg)',
+                    transformOrigin: '210px 210px'
+                  }}
+                />
+              </svg>
+            </div>
+          </div>
         </div>
         <div className="race_container">
-
+          <div className="race_row">
+            <div className="race_header">
+              <h4>{selectedCategory.toUpperCase()}</h4>
+              <h4>A.I. CONFIDENCE</h4>
+            </div>
+            
+            {displayData.map((item, index) => (
+              <div 
+                key={index} 
+                className={`race_box ${(index === 0 && !selectedItem) || (selectedItem && selectedItem.name === item.name) ? 'selected' : ''}`}
+                onClick={() => handleItemClick(item)}
+                style={{ cursor: 'pointer' }}
+              >
+                <a className="race_1">
+                  <div className='large_small-diamond'>
+                    {((index === 0 && !selectedItem) || (selectedItem && selectedItem.name === item.name)) && (
+                      <div className='small_diamond'></div>
+                    )}
+                  </div>
+                  {/* <img className='diamond' src={DiamondImg} alt="diamond img" /> */}
+                  <span className='race_name'>{item.name}</span>
+                </a>
+                <span className='race_percent'>{item.percentage.toFixed(0)}%</span>
+              </div>
+            ))}
+            
+          </div>
         </div>
+        <div className="space"></div>
       </div>
       <div className="btns_container">
         <BackButton navigateTo="/select" />

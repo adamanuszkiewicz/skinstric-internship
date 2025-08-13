@@ -61,9 +61,12 @@ const Results = () => {
       canvas.width = videoRef.current.videoWidth;
       canvas.height = videoRef.current.videoHeight;
       
+      console.log('Canvas dimensions:', canvas.width, 'x', canvas.height);
+      
       context.drawImage(videoRef.current, 0, 0);
       
       const imageData = canvas.toDataURL('image/png');
+      console.log('Captured image data URL length:', imageData.length);
       setCapturedImage(imageData);
       
       // Stop the camera stream.
@@ -95,26 +98,58 @@ const Results = () => {
     setSubmissionError(null);
 
     try {
+      console.log('Captured image type:', typeof capturedImage);
+      console.log('Captured image starts with:', capturedImage.substring(0, 50));
+      
       const userData = JSON.parse(localStorage.getItem('skinstricUserData') || '{}');
 
-      const response = await fetch(capturedImage);
-      const blob = await response.blob();
+      // Extract base64 data from data URL (remove "data:image/png;base64," prefix)
+      const base64Data = capturedImage.split(',')[1];
+      console.log('Base64 data length:', base64Data.length);
 
-      const formData = new FormData();
-      formData.append('Image', blob, 'photo.png');
-      formData.append('name', userData.name || '');
-      formData.append('location', userData.location || '');
+      // Create JSON payload instead of FormData
+      const payload = {
+        image: base64Data,
+        name: userData.name || '',
+        location: userData.location || ''
+      };
+
+      console.log('Payload:', {
+        image: base64Data.substring(0, 50) + '...(truncated)',
+        name: payload.name,
+        location: payload.location
+      });
 
       const apiResponse = await fetch('https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo',
         {
           method: 'POST',
-          body: formData
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
         }
       );
       const result = await apiResponse.json();
+      
+      console.log('API Response:', result); // Log the response for debugging
+      console.log('API Response success:', result.success); // Log the success status
+      console.log('API Response success type:', typeof result.success); // Log the type
+
+      // Check if API response indicates success (handle multiple possible indicators)
+      const isSuccess = result.success === true || 
+                       result.success === 'true' || 
+                       result.Success === true || 
+                       result.Success === 'true' ||
+                       (result.message && !result.message.toLowerCase().includes('error')) ||
+                       (!result.success && !result.error && result.data); // Sometimes success isn't explicitly stated
+
+      if (!isSuccess && (result.success === false || result.success === 'false' || result.error)) {
+        console.error('API Error:', result.message || result.error || 'Unknown error');
+        throw new Error(result.message || result.error || 'API request failed');
+      }
 
       localStorage.setItem('skinstricAnalysisResult', JSON.stringify(result));
-
+      console.log('Setting submission success to true'); // Debug log
       setSubmissionSuccess(true);
       setIsSubmitting(false);
 
@@ -234,6 +269,22 @@ const Results = () => {
               />
             </button>
             <p className="next_btn-txt-1" onClick={submitPhoto}>SUBMIT</p>
+          </div>
+        )}
+        {isSubmitting && (
+          <div className="next_btn-container">
+            <button 
+              className="next_btn" 
+              disabled
+              style={{ opacity: 0.6 }}
+            >
+              <img
+                className="play-btn-logo-2"
+                src={PlayBtnLogo}
+                alt="Submit button logo"
+              />
+            </button>
+            <p className="next_btn-txt-1">SUBMITTING...</p>
           </div>
         )}
         {isSubmissionSuccess && (
