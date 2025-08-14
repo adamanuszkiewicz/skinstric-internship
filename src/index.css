@@ -118,6 +118,7 @@ nav {
   rotate: 45deg;
   transform: translateY(-50%);
   z-index: 10;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .discover_btn {
@@ -153,6 +154,7 @@ nav {
   width: 680px;
   height: 240px;
   z-index: 1;
+  transition: transform 0.5s ease-in-out;
 }
 
 .para-1{
@@ -181,6 +183,24 @@ nav {
   border-color: #1a1b1c34;
   rotate: 45deg;
   transform: translateY(-50%);
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Hover effects for main page - targeting container */
+.box_container:has(.left_box:hover) .main_txt {
+  transform: translate(-20%, -50%);
+}
+
+.box_container:has(.left_box:hover) .right_box {
+  opacity: 0;
+}
+
+.box_container:has(.right_box:hover) .main_txt {
+  transform: translate(-80%, -50%);
+}
+
+.box_container:has(.right_box:hover) .left_box {
+  opacity: 0;
 }
 
 .take_test-btn {
@@ -678,6 +698,11 @@ nav {
     rotate: 15deg;
     animation: spin 115s linear infinite reverse;
     cursor: pointer;
+    transition: scale 0.3s ease;
+   }
+
+   .camera-icon:hover {
+    scale: 1.05;
    }
 
    .gallery-icon {
@@ -686,6 +711,11 @@ nav {
     rotate: -45deg;
     animation: spin 115s linear infinite reverse;
     cursor: pointer;
+    transition: scale 0.3s ease;
+   }
+
+   .gallery-icon:hover {
+    scale: 1.05;
    }
 
   .res_scan-line-1 {
@@ -2012,12 +2042,22 @@ nav {
     height: 100px;
     opacity: 0.8;
     rotate: 15deg;
+    transition: scale 0.3s ease;
    }
 
    .gallery-icon {
     width: 100px;
     height: 100px;
     rotate: -45deg;
+    transition: scale 0.3s ease;
+   }
+
+   .camera-icon:hover {
+    scale: 1.05;
+   }
+
+   .gallery-icon:hover {
+    scale: 1.05;
    }
 
 
@@ -2714,6 +2754,7 @@ nav {
     rotate: 15deg;
     cursor: pointer;
     z-index: 200;
+    transition: scale 0.3s ease;
   }
 
   .gallery-icon {
@@ -2722,6 +2763,15 @@ nav {
     rotate: -45deg;
     cursor: pointer;
     z-index: 200;
+    transition: scale 0.3s ease;
+  }
+
+  .camera-icon:hover {
+    scale: 1.05;
+  }
+
+  .gallery-icon:hover {
+    scale: 1.05;
   }
 
 

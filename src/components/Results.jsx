@@ -84,7 +84,7 @@ const Results = () => {
     setIsCapturing(false);
     setSubmissionError(null);
     
-    // Stops the camera stream if active.
+    // This will stops the camera stream if it's  active.
     if (videoRef.current && videoRef.current.srcObject) {
       const stream = videoRef.current.srcObject;
       stream.getTracks().forEach(track => track.stop());
@@ -103,11 +103,9 @@ const Results = () => {
       
       const userData = JSON.parse(localStorage.getItem('skinstricUserData') || '{}');
 
-      // Extract base64 data from data URL (remove "data:image/png;base64," prefix)
       const base64Data = capturedImage.split(',')[1];
       console.log('Base64 data length:', base64Data.length);
 
-      // Create JSON payload instead of FormData
       const payload = {
         image: base64Data,
         name: userData.name || '',
@@ -131,11 +129,11 @@ const Results = () => {
       );
       const result = await apiResponse.json();
       
-      console.log('API Response:', result); // Log the response for debugging
-      console.log('API Response success:', result.success); // Log the success status
-      console.log('API Response success type:', typeof result.success); // Log the type
+      console.log('API Response:', result);
+      console.log('API Response success:', result.success); 
+      console.log('API Response success type:', typeof result.success); 
 
-      // Check if API response indicates success (handle multiple possible indicators)
+      // This will check if the API response is successful (handles multiple possible indicators)
       const isSuccess = result.success === true || 
                        result.success === 'true' || 
                        result.Success === true || 
@@ -149,7 +147,7 @@ const Results = () => {
       }
 
       localStorage.setItem('skinstricAnalysisResult', JSON.stringify(result));
-      console.log('Setting submission success to true'); // Debug log
+      console.log('Setting submission success to true'); 
       setSubmissionSuccess(true);
       setIsSubmitting(false);
 

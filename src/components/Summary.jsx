@@ -6,38 +6,45 @@ import DiamondImg from '../assete/diamond-img.webp'
 
 const Summary = () => {
   const [apiData, setApiData] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('race'); // Default to race
+  const [selectedCategory, setSelectedCategory] = useState('race'); // Default to race.
   const [displayData, setDisplayData] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null); // Track selected individual item
+  const [selectedItem, setSelectedItem] = useState(null); // This will track the selected individual item.
 
   useEffect(() => {
-    // Add class to body to enable scrolling on summary page
     document.body.classList.add('summary-page');
     
-    // Get API data from localStorage
+    // This gets the API data from localStorage.
     const storedData = localStorage.getItem('skinstricAnalysisResult');
     if (storedData) {
       try {
         const parsedData = JSON.parse(storedData);
         setApiData(parsedData);
-        console.log('API Data:', parsedData); // Log to console for debugging
+        console.log('API Data:', parsedData);
         
-        // Set initial display data to race data
+        // This will set the initial display data to race data.
         if (parsedData && parsedData.data && parsedData.data.race) {
-          setDisplayData(processPercentageData(parsedData.data.race, 'race'));
+          const initialData = processPercentageData(parsedData.data.race, 'race');
+          setDisplayData(initialData);
+          
+          // This automatically selects the predicted race item. (highest percentage)
+          if (initialData.length > 0) {
+            const predictedItem = initialData.reduce((max, item) => 
+              item.percentage > max.percentage ? item : max
+            );
+            setSelectedItem(predictedItem);
+          }
         }
       } catch (error) {
         console.error('Error parsing stored API data:', error);
       }
     }
 
-    // Cleanup function to remove class when component unmounts
     return () => {
       document.body.classList.remove('summary-page');
     };
   }, []);
 
-  // Function to process percentage data and sort appropriately
+  // Function to process percentage data and sort appropriately.
   const processPercentageData = (data, category = selectedCategory) => {
     if (!data || typeof data !== 'object') return [];
     
@@ -45,29 +52,27 @@ const Summary = () => {
       .map(([key, value]) => ({
         name: key.split(' ').map(word => 
           word.charAt(0).toUpperCase() + word.slice(1)
-        ).join(' '), // Capitalize each word
-        percentage: parseFloat(value) * 100, // Convert decimal to percentage
-        rawKey: key // Keep original key for age sorting
+        ).join(' '),
+        percentage: parseFloat(value) * 100, // Converts decimal to percentage.
+        rawKey: key // Keeps original key for age sorting.
       }));
     
-    // Sort differently based on category
+    // Sorts differently based on category.
     if (category === 'age') {
-      // For age, sort by numerical age value (lowest to highest)
+      // For age, sort by numerical age value. (lowest to highest)
       return processedData.sort((a, b) => {
         const ageA = parseInt(a.rawKey.split('-')[0]) || parseInt(a.rawKey);
         const ageB = parseInt(b.rawKey.split('-')[0]) || parseInt(b.rawKey);
         return ageA - ageB;
       });
     } else {
-      // For race and sex, sort by percentage (highest to lowest)
+      // For race and sex, sort by percentage. (highest to lowest)
       return processedData.sort((a, b) => b.percentage - a.percentage);
     }
   };
 
-  // Handle button clicks
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    setSelectedItem(null); // Reset selected item when category changes
     
     if (!apiData || !apiData.data) return;
     
@@ -87,24 +92,36 @@ const Summary = () => {
         dataToProcess = {};
     }
     
-    setDisplayData(processPercentageData(dataToProcess, category));
+    const processedData = processPercentageData(dataToProcess, category);
+    setDisplayData(processedData);
+    
+    // Auto select for the predicted item. (highest percentage)
+    if (processedData.length > 0) {
+      // Finds the item with the highest percentage. (the predicted value)
+      const predictedItem = processedData.reduce((max, item) => 
+        item.percentage > max.percentage ? item : max
+      );
+      setSelectedItem(predictedItem);
+    } else {
+      setSelectedItem(null);
+    }
   };
 
-  // Handle clicking on individual items (like "Male", "Female")
+  // Handles clicking on individual items. 
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
 
-  // Get the top percentage for the selected category
+  // Get the top percentage for the selected category.
   const getTopPercentage = () => {
     if (selectedItem) {
-      return selectedItem.percentage; // Use selected item's percentage
+      return selectedItem.percentage; // Use selected item's percentage.
     }
     if (displayData.length === 0) return 0;
-    return displayData[0].percentage; // First item is highest due to sorting
+    return displayData[0].percentage; // First item is highest due to sorting.
   };
 
-  // Get the top predicted value for each category
+  // Get the top predicted value for each category.
   const getTopPrediction = (category) => {
     if (!apiData || !apiData.data) return 'N/A';
     
@@ -124,7 +141,7 @@ const Summary = () => {
         return 'N/A';
     }
     
-    // Find the key with the highest percentage
+    // This finds the key with the highest percentage.
     if (Object.keys(categoryData).length === 0) return 'N/A';
     
     const topEntry = Object.entries(categoryData)
@@ -142,23 +159,6 @@ const Summary = () => {
         <h3 className='dem_txt'>Demographics</h3>
         <h4 className='pred_txt'>Predicted race & age</h4>
       </div>
-      
-      {/* Display raw API data for debugging */}
-      {/* {apiData && (
-        <div style={{ 
-          margin: '20px', 
-          padding: '20px', 
-          backgroundColor: '#f5f5f5', 
-          borderRadius: '8px',
-          fontFamily: 'monospace',
-          fontSize: '12px',
-          overflow: 'auto',
-          maxHeight: '300px'
-        }}>
-          <h4>API Response Data:</h4>
-          <pre>{JSON.stringify(apiData, null, 2)}</pre>
-        </div>
-      )} */}
 
       <div className="dem_container">
         <div className="pred_row">
@@ -213,7 +213,7 @@ const Summary = () => {
                     <stop offset="100%" stopColor="#1a1b1c" />
                   </linearGradient>
                 </defs>
-                {/* Background circle for non-filled portion */}
+                {/* Background circle for the non-filled portion. */}
                 <circle 
                   cx="210" 
                   cy="210" 
@@ -227,7 +227,7 @@ const Summary = () => {
                     transformOrigin: '210px 210px'
                   }}
                 />
-                {/* Progress circle */}
+                {/* Progress circle. */}
                 <circle 
                   cx="210" 
                   cy="210" 
