@@ -12,6 +12,7 @@ function NextButton({ navigateTo = '/results' }) {
   };
 
   const isSelectPage = location.pathname === '/select';
+  const isSummaryPage = location.pathname === '/summary';
 
   return (
     <>
@@ -28,8 +29,17 @@ function NextButton({ navigateTo = '/results' }) {
       </button>
       {!isSelectPage && (
         <>
-          <p className="next_btn-txt" onClick={handleNextClick}>PROCEED</p>
-          <p className="next_btn-txt-2" onClick={handleNextClick}>PROCEED</p>
+          {isSummaryPage ? (
+            <>
+              <p className="next_btn-txt-3" onClick={handleNextClick}>HOME</p>
+              <p className="next_btn-txt-3" onClick={handleNextClick}>HOME</p>
+            </>
+          ) : (
+            <>
+              <p className="next_btn-txt" onClick={handleNextClick}>PROCEED</p>
+              <p className="next_btn-txt-2" onClick={handleNextClick}>PROCEED</p>
+            </>
+          )}
         </>
       )}
       </div>

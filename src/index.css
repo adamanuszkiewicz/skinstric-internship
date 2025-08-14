@@ -257,10 +257,10 @@ nav {
   animation: spin 115s linear infinite;
 }
 
-@keyframes spin {
+/* @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
+} */
 
 .back_btn {
   position: absolute;
@@ -296,6 +296,8 @@ nav {
   font-size: 14px;
   font-weight: 500;
   margin-left: 16px;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .next_btn {
@@ -309,7 +311,7 @@ nav {
   rotate: 45deg;
   background-color: #FFFFFF;
   cursor: pointer;
-  z-index: 2;
+  z-index: 8;
 }
 
 .next_btn-txt {
@@ -320,7 +322,7 @@ nav {
   font-size: 14px;
   font-weight: 500;
   margin-left: 16px;
-  z-index: 3;
+  z-index: 150;
   cursor: pointer;
 }
 
@@ -363,12 +365,24 @@ nav {
   font-size: 14px;
   font-weight: 500;
   margin-left: 16px;
-  z-index: 3;
+  z-index: 150;
   cursor: pointer;
 }
 
 .next_btn-txt-2 {
   display: none;
+}
+
+.next_btn-txt-3 {
+  position: absolute;
+  top: 60%;
+  right: 108px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 16px;
+  z-index: 150;
+  cursor: pointer;
 }
 
 .play-btn-logo-2 {
@@ -596,6 +610,7 @@ nav {
     height: 340px;
     width: 340px;
     bottom: 0;
+    rotate: 45deg;
     animation: spin 55s linear infinite;
   }
 
@@ -605,7 +620,8 @@ nav {
     border-color: #1a1b1c0e;
     height: 320px;
     width: 320px;
-    bottom: 0;
+    bottom: 10px;
+    rotate: 45deg;
     animation: spin 85s linear infinite;
   }
   .test_box-6 {
@@ -614,7 +630,8 @@ nav {
     border-color: #1a1b1c0f;
     height: 300px;
     width: 300px;
-    bottom: 0;
+    bottom: 20px;
+    rotate: 45deg;
     animation: spin 115s linear infinite;
     display: flex;
     justify-content: center;
@@ -628,6 +645,7 @@ nav {
     height: 340px;
     width: 340px;
     bottom: 0;
+    rotate: 45deg;
     animation: spin 55s linear infinite;
   }
   .test_box-8 {
@@ -637,7 +655,8 @@ nav {
     height: 320px;
     width: 320px;
     /* top: 80px; */
-    bottom: 0;
+    bottom: 10px;
+    rotate: 45deg;
     animation: spin 85s linear infinite;
   }
   .test_box-9 {
@@ -646,7 +665,8 @@ nav {
     border-color: #1a1b1c0f;
     height: 300px;
     width: 300px;
-    bottom: 0;
+    bottom: 20px;
+    rotate: 45deg;
     animation: spin 115s linear infinite;
     display: flex;
     justify-content: center;
@@ -822,7 +842,7 @@ nav {
   height: auto;
   width: auto;
   position: absolute;
-  margin: 24px 16px 0px 18px;
+  margin: -2px 16px 0px 18px;
   padding: 0 16px;
   text-transform: uppercase;
 }
@@ -852,18 +872,22 @@ nav {
   position: absolute;
   top: 275px;
   height: 100vh;
-  width: 100%;
   max-height: 500px;
+  width: 100%;
+  min-width: 300px;
   display: flex;
   justify-content: start;
   align-items: start;
   margin-left: 16px;
+  margin-top: -60px;
+  margin-bottom: 200px;
+  padding-right: 20px;
 }
 
 .pred_row {
   height: auto;
   width: 100%;
-  max-width: 150px;
+  max-width: 160px;
   min-width: 76px;
   max-height: 400px;
   display: flex;
@@ -876,8 +900,8 @@ nav {
 .pred_race {
   height: 80px;
   width: 100%;
-  max-width: 150px;
-  min-width: 76px;
+  max-width: 160px;
+  min-width: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -885,6 +909,7 @@ nav {
   margin-bottom: 12px;
   padding: 12px;
   border-top: 1px solid #1A1B1C;
+  background-color: #1a1b1c0b;
 }
 
 .race {
@@ -922,8 +947,8 @@ nav {
 .pred_age {
   height: 80px;
   width: 100%;
-  max-width: 150px;
-  min-width: 76px;
+  max-width: 160px;
+  min-width: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -937,8 +962,8 @@ nav {
 .pred_sex {
   height: 80px;
   width: 100%;
-  max-width: 150px;
-  min-width: 76px;
+  max-width: 160px;
+  min-width: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -952,14 +977,33 @@ nav {
 .pred_race.active,
 .pred_age.active,
 .pred_sex.active {
-  background-color: #f0f0f0;
+  background-color: #1a1b1c;
+  color: white;
   border: 2px solid #1a1b1c;
+}
+
+/* Ensure text elements inside active buttons are white */
+.pred_race.active h2,
+.pred_age.active h2,
+.pred_sex.active h2,
+.pred_race.active p,
+.pred_age.active p,
+.pred_sex.active p {
+  color: white;
 }
 
 .pred_race:hover,
 .pred_age:hover,
 .pred_sex:hover {
-  background-color: #f8f8f8;
+  background-color: #1a1b1c1d;
+}
+
+/* Prevent hover effect on active buttons */
+.pred_race.active:hover,
+.pred_age.active:hover,
+.pred_sex.active:hover {
+  background-color: #1a1b1c;
+  color: white;
 }
 
 
@@ -968,20 +1012,29 @@ nav {
   height: auto;
   min-height: 200px;
   width: 350px;
+  min-width: 200px;
+  max-width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-top: 1px solid purple;
   margin-left: 20px;
   background-color: #1a1b1c0f;
+  margin-right: 16px;
+  z-index: 8;
 }
 
 .race_row {
   height: auto;
   min-height: 200px;
-  width: 325px;
+  width: 100%;
+  min-width: 168px;
+  z-index: 4;
 }
 
 .race_box {
   width: 100%;
-  height: 55px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1014,6 +1067,7 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  z-index: 5;
 }
 
 .large_small-diamond {
@@ -1026,7 +1080,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 3;
   position: relative;
 }
 
@@ -1050,14 +1104,7 @@ nav {
   border: 1px solid white;
 }
 
-/* .diamond {
-  position: relative;
-  height: 10px;
-  color: white;
-  background-color: #1A1B1C;
-  width: 10px;
-  z-index: 100;
-} */
+
 
 
 
@@ -1069,7 +1116,8 @@ nav {
   justify-content: space-between;
   height: 430px;
   width: 100%;
-  max-width: 900px;
+  max-width: 920px;
+  min-width: 425px;
   margin-left: 20px;
   border-top: 1px solid #1A1B1C;
   background-color: #1a1b1c0c;
@@ -1080,6 +1128,7 @@ nav {
   height: 100%;
   width: 100%;
   max-width: 500px;
+  min-width: 236px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -1133,10 +1182,6 @@ nav {
   font-weight: 100;
   color: #1A1B1C;
   z-index: 10;
-}
-
-.btns_container {
-  display: none;
 }
 
 
@@ -1351,7 +1396,7 @@ nav {
     font-size: 14px;
     font-weight: 500;
     margin-left: 16px;
-    z-index: 3;
+    z-index: 150;
     cursor: pointer;
     /* display: none; */
   }
@@ -1367,7 +1412,7 @@ nav {
     rotate: 225deg;
     background-color: #FFFFFF;
     cursor: pointer;
-    z-index: 2;
+    z-index: 140;
   }
   
   .play-btn-logo-2 {
@@ -1401,6 +1446,37 @@ nav {
   .success_message {
     top: 48%;
   }
+
+}
+
+/*-------------Message at bottom----------------*/
+
+.message {
+  position: absolute;
+  top: 91%;
+  left: 38%;
+  width: 100%;
+  max-width: 450px;
+  min-width: 350px;
+  height: 20px;
+  color: #1a1b1c67;
+  /* text-align: center; */
+}
+
+
+@media (max-width: 950px) {
+
+  .message {
+  position: absolute;
+  top: 91%;
+  left: 30%;
+  width: 100%;
+  max-width: 450px;
+  min-width: 350px;
+  height: 20px;
+  color: #1a1b1c67;
+  /* text-align: center; */
+}
 
 }
 
@@ -1631,9 +1707,11 @@ nav {
     position: absolute;
     top: 74.8%;
     left: 108px;
-    width: 100px;
+    width: 40px;
     font-size: 14px;
     font-weight: 500;
+    z-index: 100;
+    cursor: pointer;
   }
 
   .play-btn-logo-3 {
@@ -1659,7 +1737,7 @@ nav {
     rotate: 225deg;
     background-color: #FFFFFF;
     cursor: pointer;
-    z-index: 2;
+    z-index: 140;
   }
 
     .next_btn-txt-1 {
@@ -1670,9 +1748,11 @@ nav {
     font-size: 14px;
     font-weight: 500;
     margin-left: 16px;
-    z-index: 3;
+    z-index: 150;
     cursor: pointer;
   }
+
+  
 
   .play-btn-logo-2 {
     position: absolute;
@@ -1693,8 +1773,14 @@ nav {
     font-size: 14px;
     font-weight: 500;
     margin-left: 16px;
-    z-index: 3;
+    z-index: 150;
   }
+
+    .next_btn-txt-3 {
+      top: 45px;
+      right: 116px;
+      z-index: 150;
+    }
 
   .summary_btn-txt {
     display: none;
@@ -1805,7 +1891,7 @@ nav {
   .ai_access-camera-txt {
     position: relative;
     left: 0px;
-    bottom: -200px;
+    bottom: -220px;
     width: 150px;
     text-transform: uppercase;
     font-size: 12px;
@@ -1814,8 +1900,8 @@ nav {
   .ai_access-gallery-txt {
     position: relative;
     text-align: end;
-    left: 20px;
-    bottom: -200px;
+    left: 0px;
+    bottom: -220px;
     width: 140px;
     text-transform: uppercase;
     font-size: 12px;
@@ -1985,6 +2071,7 @@ nav {
     align-items: center;
     margin-left: 20px;
     margin-bottom: 20px;
+    z-index: 6;
   }
   
   .pred_race {
@@ -2067,6 +2154,7 @@ nav {
     width: 100%;
     max-width: 640px;
     padding-left: 20px;
+    z-index: 3;
   }
 
   /* Enable scrolling for summary page only */
@@ -2099,12 +2187,15 @@ nav {
     padding-bottom: 20px;
   }
   
-  .space {
+  .message {
+    position: absolute;
+    left: 170px;
+    top: 720px;
     width: 100%;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 300px;
+    height: auto;
+    color: #1a1b1c67;
+    text-align: center;
   }
   
 }
@@ -2256,7 +2347,7 @@ nav {
     background-color: #ffffff;
     border: 1px solid black;
     cursor: pointer;
-    z-index: 2;
+    z-index: 140;
   }
 
   .back_btn-txt {
@@ -2270,7 +2361,7 @@ nav {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    z-index: 3;
+    z-index: 150;
     cursor: pointer;
     /* display: none; */
   }
@@ -2304,7 +2395,7 @@ nav {
     rotate: 225deg;
     background-color: #FFFFFF;
     cursor: pointer;
-    z-index: 2;
+    z-index: 140;
   }
   
 
@@ -2316,7 +2407,7 @@ nav {
     font-size: 11px;
     font-weight: 600;
     margin-left: 16px;
-    z-index: 3;
+    z-index: 150;
     cursor: pointer;
     display: none;
   }
@@ -2347,7 +2438,7 @@ nav {
     font-size: 11px;
     font-weight: 600;
     margin-left: 16px;
-    z-index: 3;
+    z-index: 150;
     cursor: pointer;
   }
 
@@ -2359,7 +2450,20 @@ nav {
     font-size: 11px;
     font-weight: 600;
     margin-left: 16px;
-    z-index: 3;
+    z-index: 150;
+    cursor: pointer;
+    display: block;
+  }
+
+  .next_btn-txt-3 {
+    position: absolute;
+    top: 79%;
+    right: 60px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 16px;
+    z-index: 150;
     cursor: pointer;
     display: block;
   }
@@ -2444,7 +2548,7 @@ nav {
     position: absolute;
     width: 100%;
     height: 50%;
-    bottom: 60px;
+    bottom: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2482,21 +2586,21 @@ nav {
 
   .ai_access-camera-txt {
     position: relative;
-    left: -50px;
-    bottom: -200px;
+    left: 0px;
+    bottom: -220px;
     width: 150px;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 24px;
   }
   .ai_access-gallery-txt {
     position: relative;
     text-align: end;
-    left: 50px;
-    bottom: -206px;
+    left: 0px;
+    bottom: -220px;
     width: 140px;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 24px;
     pointer-events: none;
     z-index: 1;
@@ -2509,7 +2613,6 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
     width: 180px;
     height: 180px;
   }
@@ -2534,6 +2637,7 @@ nav {
     height: 200px;
     width: 200px;
     top: 70px;
+    rotate: 45deg;
     animation: spin 55s linear infinite;
   }
   .test_box-5 {
@@ -2563,7 +2667,6 @@ nav {
     width: 200px;
     top: 70px;
     animation: spin 55s linear infinite;
-    
   }
   
   .test_box-8 {
@@ -2611,6 +2714,55 @@ nav {
     max-width: 600px;
     margin-right: 30px;
     padding-right: 30px;
+  }
+
+  .graph_container {
+    width: 100%;
+    min-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .graph_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 26px;
+  }
+
+  .graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -8%;
+  }
+
+  .btns_container {
+    /* z-index: 10; */
+    left: 2px;
+  }
+
+  .pred_row {
+    z-index: 4;
+  }
+  
+  .race_row {
+    z-index: 4;
+  }
+
+  .next_btn-txt-2 {
+    text-align: center;
+  }
+
+  .message {
+    position: absolute;
+    left: 70px;
+    top: 720px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    color: #1a1b1c67;
+    text-align: center;
   }
 }
  

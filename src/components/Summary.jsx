@@ -24,7 +24,7 @@ const Summary = () => {
         
         // Set initial display data to race data
         if (parsedData && parsedData.data && parsedData.data.race) {
-          setDisplayData(processPercentageData(parsedData.data.race));
+          setDisplayData(processPercentageData(parsedData.data.race, 'race'));
         }
       } catch (error) {
         console.error('Error parsing stored API data:', error);
@@ -37,18 +37,31 @@ const Summary = () => {
     };
   }, []);
 
-  // Function to process percentage data and sort from highest to lowest
-  const processPercentageData = (data) => {
+  // Function to process percentage data and sort appropriately
+  const processPercentageData = (data, category = selectedCategory) => {
     if (!data || typeof data !== 'object') return [];
     
-    return Object.entries(data)
+    const processedData = Object.entries(data)
       .map(([key, value]) => ({
         name: key.split(' ').map(word => 
           word.charAt(0).toUpperCase() + word.slice(1)
         ).join(' '), // Capitalize each word
-        percentage: parseFloat(value) * 100 // Convert decimal to percentage
-      }))
-      .sort((a, b) => b.percentage - a.percentage);
+        percentage: parseFloat(value) * 100, // Convert decimal to percentage
+        rawKey: key // Keep original key for age sorting
+      }));
+    
+    // Sort differently based on category
+    if (category === 'age') {
+      // For age, sort by numerical age value (lowest to highest)
+      return processedData.sort((a, b) => {
+        const ageA = parseInt(a.rawKey.split('-')[0]) || parseInt(a.rawKey);
+        const ageB = parseInt(b.rawKey.split('-')[0]) || parseInt(b.rawKey);
+        return ageA - ageB;
+      });
+    } else {
+      // For race and sex, sort by percentage (highest to lowest)
+      return processedData.sort((a, b) => b.percentage - a.percentage);
+    }
   };
 
   // Handle button clicks
@@ -74,7 +87,7 @@ const Summary = () => {
         dataToProcess = {};
     }
     
-    setDisplayData(processPercentageData(dataToProcess));
+    setDisplayData(processPercentageData(dataToProcess, category));
   };
 
   // Handle clicking on individual items (like "Male", "Female")
@@ -255,20 +268,19 @@ const Summary = () => {
                       <div className='small_diamond'></div>
                     )}
                   </div>
-                  {/* <img className='diamond' src={DiamondImg} alt="diamond img" /> */}
                   <span className='race_name'>{item.name}</span>
                 </a>
                 <span className='race_percent'>{item.percentage.toFixed(0)}%</span>
               </div>
             ))}
-            
           </div>
         </div>
-        <div className="space"></div>
-      </div>
+          <div className="message">If A.I estimate is wrong, select the correct one.
+          </div>
+        </div>
       <div className="btns_container">
         <BackButton navigateTo="/select" />
-        <NextButton navigateTo="/dashboard" />
+        <NextButton navigateTo="/" />
       </div>
     </div>
   )
